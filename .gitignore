@@ -1,0 +1,64 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+
+@cscprof
+github
+/
+gitignore
+Public
+Code
+Pull requests
+323
+Actions
+Security
+Insights
+gitignore/Laravel.gitignore
+@alkhachatryan
+alkhachatryan Update Laravel.gitignore (#3098)
+Latest commit 50e42aa on Jun 27, 2019
+ History
+ 14 contributors
+@jerodev@shiftkey@appleboy@rohanvakharia@joshuamabina@rkrp@jakejohns@Arsfiqball@insign@cyrodjohn@alkhachatryan@fabiofdsantos
+23 lines (19 sloc)  339 Bytes
+
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
