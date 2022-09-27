@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faculty;
+use App\Models\Faculty as Faculty;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
@@ -14,7 +14,9 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        $facultyList = Faculty::get();
+
+        return $facultyList->toJson();
     }
 
     /**
