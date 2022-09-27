@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faculty as Faculty;
+use App\Models\Term;
 use Illuminate\Http\Request;
 
-class FacultyController extends Controller
+class TermController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $facultyList = Faculty::with('courses')->get();
-
-        return $facultyList->toJson();
+        //
     }
 
     /**
@@ -33,24 +31,22 @@ class FacultyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Faculty  $faculty
+     * @param  \App\Models\Term  $term
      * @return \Illuminate\Http\Response
      */
-    public function show(Faculty $faculty)
+    public function show(Term $term)
     {
-        $facultyList = Faculty::with('courses')->find($faculty);
-
-        return $facultyList->toJson();
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Faculty  $faculty
+     * @param  \App\Models\Term  $term
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, Term $term)
     {
         //
     }
@@ -58,10 +54,10 @@ class FacultyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Faculty  $faculty
+     * @param  \App\Models\Term  $term
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faculty $faculty)
+    public function destroy(Term $term)
     {
         //
     }
