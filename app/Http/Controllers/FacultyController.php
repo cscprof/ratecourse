@@ -38,7 +38,9 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        //
+        $facultyList = Faculty::find($faculty);
+
+        return $facultyList->toJson();
     }
 
     /**

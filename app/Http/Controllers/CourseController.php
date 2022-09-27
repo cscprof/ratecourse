@@ -12,7 +12,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courseList = Course::get();
+
+        return $courseList->toJson();
     }
 
     /**
@@ -34,7 +36,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $courseList = Course::find($course);
+
+        return $courseList->toJson();
     }
 
     /**

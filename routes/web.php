@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,7 @@ use App\Http\Controllers\FacultyController;
 */
 
 Route::resource('faculty', FacultyController::class);
+route::resource('courses', CourseController::class);
 
 Route::get('/', function () {
     return view('welcome');
