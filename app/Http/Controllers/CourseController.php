@@ -36,9 +36,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $courseList = Course::find($course);
+        $courseList = Course::find($course->id);
 
-        return $courseList->toJson();
+        return  $courseList->toJson();
     }
 
     /**
