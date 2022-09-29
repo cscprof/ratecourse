@@ -14,7 +14,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $facultyList = Faculty::with('courses')->get();
+        $facultyList = Faculty::get();
 
         return $facultyList->toJson();
     }

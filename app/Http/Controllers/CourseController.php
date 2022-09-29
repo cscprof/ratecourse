@@ -12,7 +12,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courseList = Course::with('faculty')->get();
+        $courseList = Course::get();
 
         return $courseList->toJson();
     }
