@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FakeUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +16,19 @@ use App\Http\Controllers\CourseController;
 */
 
 Route::resource('faculty', FacultyController::class);
-route::resource('courses', CourseController::class);
+Route::resource('courses', CourseController::class);
+
+Route::controller(FakeUserController::class)->group(function() {
+    Route::post('user/login', 'login');
+});
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
