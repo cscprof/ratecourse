@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FakeUserController;
+use App\Http\Controllers\FacultyQuestionController;
+use App\Http\Controllers\CourseQuestionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +20,8 @@ use App\Http\Controllers\FakeUserController;
 
 Route::resource('faculty', FacultyController::class);
 Route::resource('courses', CourseController::class);
+Route::resource('coursequestions', CourseQuestionController::class);
+Route::resource('facultyquestions', FacultyQuestionController::class);
 
 Route::controller(FakeUserController::class)->group(function() {
     Route::post('user/login', 'login');
