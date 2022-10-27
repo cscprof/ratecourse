@@ -9,7 +9,7 @@ class CourseFaculty extends Model
 {
     use HasFactory;
 
-    protected $table = 'course_faculties';
+    protected $table = 'course_faculty';
 
     public function term(){
         return $this->belongsTo(Term::class);

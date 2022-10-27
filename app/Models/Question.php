@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FacultyQuestion extends Model
+class Question extends Model
 {
     use HasFactory;
 
-    protected $table = 'faculty_questions';
+    protected $table = 'questions';
 
 //    public function faculty(){
 //        return $this->belongsToMany(Faculty::class, CourseFaculty::class);
 //    }
-
 }

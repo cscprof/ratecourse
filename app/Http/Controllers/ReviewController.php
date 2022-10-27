@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CourseQuestionCourse;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
-class CourseReviewController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +13,6 @@ class CourseReviewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +35,6 @@ class CourseReviewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(CourseQuestionCourse $courseQuestionCourse)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CourseQuestionCourse  $courseQuestionCourse
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CourseQuestionCourse $courseQuestionCourse)
     {
         //
     }

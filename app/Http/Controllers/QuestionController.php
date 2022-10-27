@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\CourseQuestion;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
-class CourseQuestionController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +12,7 @@ class CourseQuestionController extends Controller
      */
     public function index()
     {
-        return CourseQuestion::get();
+        return Question::get();
     }
 
     /**
@@ -39,21 +39,24 @@ class CourseQuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CourseQuestion  $courseQuestion
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseQuestion $courseQuestion)
+    public function show(Question $question)
     {
-        //
+
+        $questionList = Question::where('id', $question->id )->find($question);
+
+        return $questionList->toJson();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CourseQuestion  $courseQuestion
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(CourseQuestion $courseQuestion)
+    public function edit(Question $Question)
     {
         //
     }
@@ -62,10 +65,10 @@ class CourseQuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CourseQuestion  $courseQuestion
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseQuestion $courseQuestion)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -73,10 +76,10 @@ class CourseQuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CourseQuestion  $courseQuestion
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseQuestion $courseQuestion)
+    public function destroy(Question $question)
     {
         //
     }

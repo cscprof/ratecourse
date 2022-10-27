@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('faculty_questions_faculties', function (Blueprint $table) {
+        Schema::create('course_faculty', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('faculty_id');
-            $table->unsignedInteger('question_id');
-            $table->unsignedInteger('course_id');
+            $table->integer('course_id');
+            $table->integer('faculty_id');
+            $table->integer('term_id');
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faculty_questions_faculties');
+        Schema::dropIfExists('course_faculty');
     }
 };
