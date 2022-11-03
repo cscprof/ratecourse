@@ -5,6 +5,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FakeUserController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ReviewController;
 
 
 /*
@@ -21,6 +22,7 @@ use App\Http\Controllers\QuestionController;
 Route::resource('faculty', FacultyController::class);
 Route::resource('courses', CourseController::class);
 Route::resource('questions', QuestionController::class);
+Route::resource('reviews', ReviewController::class);
 
 Route::controller(FakeUserController::class)->group(function() {
     Route::post('user/login', 'login');
