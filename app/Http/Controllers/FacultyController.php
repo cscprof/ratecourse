@@ -65,4 +65,13 @@ class FacultyController extends Controller
     {
         //
     }
+
+    public function showReviews($id)
+    {
+        $reviewList = Faculty::with('reviews')->find($id);
+
+        return $reviewList->toJson();
+    }
+
+
 }

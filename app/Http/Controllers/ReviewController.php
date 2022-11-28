@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\QuestionReview;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -15,21 +16,11 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //"responses": [
-        //    {"1": 5},
-        //    {"2": 3},
-        //    {"3": 2},
-        //    {"4": 1},
-        //    {"5": 4},
-        //    {"6": 1},
-        //    {"7": 4},
-        //    {"8": 2},
-        //    {"9": 2},
-        //    {"10": 4},
-        //    {"11": 3},
-        //    {"12": 5},
-        //    {"13": 5},
-        //    {"14": 1}
+        return Review::with('responses')
+            ->with('faculty')
+            ->with('course')
+            ->with('user')
+            ->get();
     }
 
     /**
@@ -47,13 +38,21 @@ class ReviewController extends Controller
 
         $responses = $request->input('responses');
 
+        // Create the review record
+        $review = Review::create([
+            'faculty_id' => $facultyId,
+            'course_id' => $courseId,
+            'term_id' => $termId,
+            'user_id' => $userId,
+        ]);
+
+        $review_id = $review->id;
+
+        // Create responses
         foreach( $responses as $q_id => $response)
         {
-            Review::create([
-               'faculty_id' => $facultyId,
-                'course_id' => $courseId,
-                'term_id' => $termId,
-                'user_id' => $userId,
+            QuestionReview::create([
+                'review_id' => $review_id,
                 'question_id' => $q_id,
                 'response' => $response
             ]);
@@ -61,46 +60,51 @@ class ReviewController extends Controller
 
         // Add comments
         Comment::create([
-            'faculty_id' => $facultyId,
-            'course_id' => $courseId,
-            'term_id' => $termId,
-            'user_id' => $userId,
+            'review_id' => $review_id,
             'comment' => $request->input('comment')
         ]);
 
+        return response(json_encode($review_id), 200)->header('Content-Type', 'text/json');
+
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\CourseQuestionCourse  $courseQuestionCourse
-     * @return \Illuminate\Http\Response
+     * Get a specific review by review ID
+     * @param Review $review
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
-    public function show(CourseQuestionCourse $courseQuestionCourse)
+    public function show(Review $review)
+    {
+        return Review::with('responses')
+            ->with('faculty')
+            ->with('course')
+            ->with('user')
+            ->find($review->id);
+    }
+
+    /**
+     * @param Request $request
+     * @param Review $review
+     */
+    public function update(Request $request, Review $review)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CourseQuestionCourse  $courseQuestionCourse
-     * @return \Illuminate\Http\Response
+     * @param Review $review
      */
-    public function update(Request $request, CourseQuestionCourse $courseQuestionCourse)
+    public function destroy(Review $review)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CourseQuestionCourse  $courseQuestionCourse
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CourseQuestionCourse $courseQuestionCourse)
-    {
-        //
+    public function showFacultyReviews($id){
+        return Review::with('responses')
+            ->with('faculty')
+            ->with('course')
+            ->with('user')
+            ->where('faculty_id', $id)
+            ->get();
     }
 }

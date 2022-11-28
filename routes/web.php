@@ -20,9 +20,16 @@ use App\Http\Controllers\ReviewController;
 */
 
 Route::resource('faculty', FacultyController::class);
+
+
+
 Route::resource('courses', CourseController::class);
 Route::resource('questions', QuestionController::class);
+
 Route::resource('reviews', ReviewController::class);
+Route::controller(ReviewController::class)->group(function(){
+    Route::get('faculty/{id}/reviews', 'showFacultyReviews');
+});
 
 Route::controller(FakeUserController::class)->group(function() {
     Route::post('user/login', 'login');
