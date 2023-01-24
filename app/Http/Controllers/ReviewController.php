@@ -90,6 +90,7 @@ class ReviewController extends Controller
             ->with('faculty')
             ->with('course')
             ->with('user')
+            ->with('comment')
             ->find($review->id);
     }
 
