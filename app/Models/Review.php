@@ -29,4 +29,8 @@ class Review extends Model
         return $this->belongsTo(User::class)->select(['id', 'name', 'email']);
     }
 
+    public function comment(){
+        return $this->hasOne(Comment::class)->select(['id', 'review_id', 'comment']);
+    }
+
 }

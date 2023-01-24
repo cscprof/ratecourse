@@ -26,7 +26,7 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,8 +49,7 @@ class ReviewController extends Controller
         $review_id = $review->id;
 
         // Create responses
-        foreach( $responses as $q_id => $response)
-        {
+        foreach ($responses as $q_id => $response) {
             QuestionReview::create([
                 'review_id' => $review_id,
                 'question_id' => $q_id,
@@ -58,11 +57,14 @@ class ReviewController extends Controller
             ]);
         }
 
-        // Add comments
-        Comment::create([
-            'review_id' => $review_id,
-            'comment' => $request->input('comment')
-        ]);
+        // Add comments - if any
+        if ($request->input('comment')) {
+
+            Comment::create([
+                'review_id' => $review_id,
+                'comment' => $request->input('comment')
+            ]);
+        }
 
         return response(json_encode($review_id), 200)->header('Content-Type', 'text/json');
 
@@ -82,29 +84,23 @@ class ReviewController extends Controller
             ->find($review->id);
     }
 
-    /**
-     * @param Request $request
-     * @param Review $review
-     */
-    public function update(Request $request, Review $review)
+    public function showFacultyReviews($id)
     {
-        //
-    }
-
-    /**
-     * @param Review $review
-     */
-    public function destroy(Review $review)
-    {
-        //
-    }
-
-    public function showFacultyReviews($id){
         return Review::with('responses')
             ->with('faculty')
             ->with('course')
             ->with('user')
             ->where('faculty_id', $id)
+            ->get();
+    }
+
+    public function showCourseReviews($id)
+    {
+        return Review::with('responses')
+            ->with('faculty')
+            ->with('course')
+            ->with('user')
+            ->where('course_id', $id)
             ->get();
     }
 }

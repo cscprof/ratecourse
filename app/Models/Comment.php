@@ -10,4 +10,6 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['review_id', 'comment'];
+
+
 }
