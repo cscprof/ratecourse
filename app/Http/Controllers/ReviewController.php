@@ -20,6 +20,7 @@ class ReviewController extends Controller
             ->with('faculty')
             ->with('course')
             ->with('user')
+            ->with('comment')
             ->get();
     }
 
@@ -90,6 +91,7 @@ class ReviewController extends Controller
             ->with('faculty')
             ->with('course')
             ->with('user')
+            ->with('comment')
             ->where('faculty_id', $id)
             ->get();
     }
@@ -100,6 +102,7 @@ class ReviewController extends Controller
             ->with('faculty')
             ->with('course')
             ->with('user')
+            ->with('comment')
             ->where('course_id', $id)
             ->get();
     }
