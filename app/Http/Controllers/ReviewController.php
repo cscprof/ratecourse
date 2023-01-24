@@ -39,12 +39,21 @@ class ReviewController extends Controller
 
         $responses = $request->input('responses');
 
+        $responseTotal = 0;
+        $count = 0;
+        foreach ($responses as $q_id => $response) {
+            $responseTotal += $response;
+            $count = $response > 0 ? $count++ : $count;
+        }
+        $overallScore = $responseTotal / $count;
+        
         // Create the review record
         $review = Review::create([
             'faculty_id' => $facultyId,
             'course_id' => $courseId,
             'term_id' => $termId,
             'user_id' => $userId,
+            'overall_score' => $overallScore,
         ]);
 
         $review_id = $review->id;
