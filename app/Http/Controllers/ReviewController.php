@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\QuestionReview;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\FacultyController as Faculty;
 
 class ReviewController extends Controller
 {
@@ -46,6 +47,7 @@ class ReviewController extends Controller
         }
         $overallScore = $responseTotal / count($responses);
 
+
         // Create the review record
         $review = Review::create([
             'faculty_id' => $facultyId,
@@ -57,23 +59,31 @@ class ReviewController extends Controller
 
         $review_id = $review->id;
 
-        // Create responses
-        foreach ($responses as $q_id => $response) {
-            QuestionReview::create([
-                'review_id' => $review_id,
-                'question_id' => $q_id,
-                'response' => $response
-            ]);
+        if ($review_id) {
+
+            // Create responses
+            foreach ($responses as $q_id => $response) {
+                QuestionReview::create([
+                    'review_id' => $review_id,
+                    'question_id' => $q_id,
+                    'response' => $response
+                ]);
+            }
+
+            // Add comments - if any
+            if ($request->input('comment')) {
+
+                Comment::create([
+                    'review_id' => $review_id,
+                    'comment' => $request->input('comment')
+                ]);
+            }
+
         }
 
-        // Add comments - if any
-        if ($request->input('comment')) {
+        // Update faculty overall rating
+        Faculty::updateRating($facultyId);
 
-            Comment::create([
-                'review_id' => $review_id,
-                'comment' => $request->input('comment')
-            ]);
-        }
 
         return response(json_encode($review_id), 200)->header('Content-Type', 'text/json');
 

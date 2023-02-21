@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty as Faculty;
+use App\Models\Review;
+use App\Models\Review as Reviews;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
@@ -73,5 +75,14 @@ class FacultyController extends Controller
         return $reviewList->toJson();
     }
 
+    /**
+     * Update the overall review score for a faculty member
+     * 
+     * @param $facultyId
+     * @return void
+     */
+    public static function updateRating($facultyId){
+        Faculty::where('id', $facultyId)->update(['rating' => Review::where( 'faculty_id', $facultyId)->avg('overall_score') ]);
+    }
 
 }
