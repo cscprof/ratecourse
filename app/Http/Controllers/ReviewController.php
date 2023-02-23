@@ -8,6 +8,8 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FacultyController as Faculty;
 
+use Illuminate\Support\Facades\Log;
+
 class ReviewController extends Controller
 {
     /**
@@ -39,6 +41,10 @@ class ReviewController extends Controller
         $userId = $request->input('user_id');
 
         $responses = $request->input('responses');
+
+        Log::info('\n\n******** ' . $facultyId);
+        Log::info('\n******** ' . $courseId);
+        Log::info('\n******** ' . $responses);
 
         $responseTotal = 0;
 
