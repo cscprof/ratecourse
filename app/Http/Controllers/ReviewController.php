@@ -44,7 +44,7 @@ class ReviewController extends Controller
 
         Log::info('\n\n******** ' . $facultyId);
         Log::info('\n******** ' . $courseId);
-        Log::info('\n******** ' . $responses);
+        Log::info('\n******** ' . $responses[0]);
 
         $responseTotal = 0;
 
