@@ -21,7 +21,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -32,21 +32,21 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course)
     {
         $courseList = Course::with('faculty')->find($course->id);
 
-        return  $courseList->toJson();
+        return $courseList->toJson();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Course $course)
@@ -60,8 +60,18 @@ class CourseController extends Controller
      * @param $facultyId
      * @return void
      */
-    public static function updateRating(){
+    public static function updateRating()
+    {
         $result = DB::select('call UpdateCourseRatings()');
     }
 
+    public static function getRatedCourses()
+    {
+        $courseList = Course::select('department', 'number', 'title', 'rating')
+            ->distinct()
+            ->where('rating', '>', 0)
+            ->get();
+
+        return $courseList->toJSON();
+    }
 }

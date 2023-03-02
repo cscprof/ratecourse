@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Log;
 Route::resource('faculty', FacultyController::class);
 
 Route::resource('courses', CourseController::class);
+Route::controller(CourseController::class)->group(function(){
+    Route::get('ratedcourses', 'getRatedCourses');
+});
+
 Route::resource('questions', QuestionController::class);
 
 Route::resource('reviews', ReviewController::class);
