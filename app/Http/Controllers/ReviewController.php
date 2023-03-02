@@ -7,6 +7,8 @@ use App\Models\QuestionReview;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FacultyController as Faculty;
+use App\Http\Controllers\CourseController as Course;
+
 
 use Illuminate\Support\Facades\Log;
 
@@ -89,6 +91,10 @@ class ReviewController extends Controller
 
         // Update faculty overall rating
         Faculty::updateRating($facultyId);
+
+        // Update course overall rating
+        Course::updateRating();
+
 
 
         return response(json_encode($review_id), 200)->header('Content-Type', 'text/json');

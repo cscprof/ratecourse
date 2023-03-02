@@ -22,17 +22,6 @@ class FacultyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Faculty  $faculty
@@ -40,7 +29,7 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        $facultyList = Faculty::with('courses')->find($faculty);
+        $facultyList = Faculty::with('courses')->find($faculty->id);
 
         return $facultyList->toJson();
     }
@@ -77,7 +66,7 @@ class FacultyController extends Controller
 
     /**
      * Update the overall review score for a faculty member
-     * 
+     *
      * @param $facultyId
      * @return void
      */

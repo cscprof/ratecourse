@@ -2,6 +2,7 @@
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -54,13 +55,13 @@ class CourseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Update the overall review score for a faculty member
      *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @param $facultyId
+     * @return void
      */
-    public function destroy(Course $course)
-    {
-        //
+    public static function updateRating(){
+        $result = DB::select('call UpdateCourseRatings()');
     }
+
 }

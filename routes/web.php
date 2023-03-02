@@ -7,6 +7,7 @@ use App\Http\Controllers\FakeUserController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ReviewController;
 
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
