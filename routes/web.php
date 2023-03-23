@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FakeUserController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Log;
 
@@ -28,6 +29,8 @@ Route::controller(CourseController::class)->group(function(){
 });
 
 Route::resource('questions', QuestionController::class);
+
+Route::resource('users', UserController::class);
 
 Route::resource('reviews', ReviewController::class);
 Route::controller(ReviewController::class)->group(function(){
