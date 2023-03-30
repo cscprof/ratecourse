@@ -40,7 +40,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $input = $request->all();
+        // dd($input);
+
+        $user = User::find($id);
+        $user->fill($input);
+        $user->save();
+
+
+//        'name',
+//        'email',
+//        'password',
+//        'role_id',
+//        'faculty_id',
+//        'is_active'
     }
 
     /**
